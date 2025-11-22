@@ -40,23 +40,36 @@
 # print(max_subarray_sum(nums))
 
 
-# def maxsubarraysum(nums):
-#     maxsum = nums[0]
-#     currsum = nums[0]
-#     for i in nums[1:]:
-#         currsum = max(i, currsum + i)
-#         maxsum = max(maxsum, currsum)
-#     return maxsum
+def maxsubarraysum(nums):
+    maxsum = nums[0]
+    currsum = nums[0]
+    for i in nums[1:]:
+        currsum = max(i, currsum + i)
+        maxsum = max(maxsum, currsum)
+    return maxsum
 
 # print(maxsubarraysum(nums))
 
 # 2d kadane's algorithm
 
-# rows = int(input())
+# def maxsubarraysum2d(matrix):
+#     rows = len(matrix)
+#     cols = len(matrix[0])   
+#     maxsum = float('-inf')
+#     for left in range(cols):
+#         rowsum = [0] * rows
+#         for right in range(left, cols):
+#             for r in range(rows):
+#                 rowsum[r] = rowsum[r] + matrix[r][right]
+#             kadanebest = maxsubarraysum(rowsum)
+#             maxsum = max(maxsum, kadanebest)
+#     return maxsum
 
-# matrix = []
-
-# for i in range(rows):
-#     templist = [int(item) for item in input().split()]
-#     matrix.append(templist)
+# matrix = [
+#     [1, -2, -1, 4],
+#     [-8, 3, 4, 2],
+#     [3, -4, 5, -1],
+#     [2, -1, -3, 4]
+# ]
+# print(maxsubarraysum2d(matrix))
 
