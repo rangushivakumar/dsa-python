@@ -117,26 +117,85 @@
 
 # 3sum problem
 
-def three_sum(nums, target):
-    newnums = nums.copy()
-    nums.sort()
-    for i in range(len(nums)):
-        fixednum = nums[i]
-        start = i + 1
-        end = len(nums) - 1
-        while start < end:
-            currsum = fixednum + nums[start] + nums[end]
-            ans = []
-            if currsum == target:
-                for i in range(len(newnums)):
-                    if newnums[i] == fixednum or newnums[i] == nums[start] or newnums[i] == nums[end]:
-                        ans.append(i)
-                return ans
-            elif currsum < target:
-                start = start + 1
-            else:
-                end = end - 1
-    return []
-nums = [2, 7, 11, 15, -2, 4]
-index = three_sum(nums, 9) 
-print("Three Sum Indices:", index)  
+# def three_sum(nums, target):
+#     newnums = nums.copy()
+#     nums.sort()
+#     for i in range(len(nums)):
+#         fixednum = nums[i]
+#         start = i + 1
+#         end = len(nums) - 1
+#         while start < end:
+#             currsum = fixednum + nums[start] + nums[end]
+#             ans = []
+#             if currsum == target:
+#                 for i in range(len(newnums)):
+#                     if newnums[i] == fixednum or newnums[i] == nums[start] or newnums[i] == nums[end]:
+#                         ans.append(i)
+#                 return ans
+#             elif currsum < target:
+#                 start = start + 1
+#             else:
+#                 end = end - 1
+#     return []
+# nums = [2, 7, 11, 15, -2, 4]
+# index = three_sum(nums, 9) 
+# print("Three Sum Indices:", index)  
+
+
+# Dutch National Flag Algorithm
+def dutch_national_flag(arr):
+    low = 0
+    mid = 0
+    high = len(arr)-1
+    while mid <= high:
+        if arr[mid] == 0:
+            arr[low], arr[mid] = arr[mid], arr[low]
+            low += 1
+            mid += 1
+        elif arr[mid] == 1:
+            mid += 1
+        else:
+            arr[mid], arr[high] = arr[high], arr[mid]
+            high -= 1
+    return arr
+
+# Example usage:
+arr = [2, 0, 1, 2, 1, 0]
+sorted_arr = dutch_national_flag(arr)
+print("Sorted Array using Dutch National Flag Algorithm:", sorted_arr)  # Output: [0, 0, 1, 1, 2, 2]
+# Time Complexity: O(n)
+# Space Complexity: O(1)
+
+# with time complexity O(2n)
+def dutch_national_flag_two_pass(arr):
+    count0 = 0
+    count1 = 0
+    count2 = 0
+    
+    for num in arr:
+        if num == 0:
+            count0 += 1
+        elif num == 1:
+            count1 += 1
+        else:
+            count2 += 1
+            
+    index = 0
+    for _ in range(count0):
+        arr[index] = 0
+        index += 1
+    for _ in range(count1):
+        arr[index] = 1
+        index += 1
+    for _ in range(count2):
+        arr[index] = 2
+        index += 1
+        
+    return arr
+
+# Example usage:
+arr = [2, 0, 1, 2, 1, 0]
+sorted_arr = dutch_national_flag_two_pass(arr)
+print("Sorted Array using Two-Pass Dutch National Flag Algorithm:", sorted_arr)  # Output: [0, 0, 1, 1, 2, 2]
+# Time Complexity: O(2n)
+# Space Complexity: O(1)
