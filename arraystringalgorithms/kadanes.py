@@ -40,13 +40,13 @@
 # print(max_subarray_sum(nums))
 
 
-def maxsubarraysum(nums):
-    maxsum = nums[0]
-    currsum = nums[0]
-    for i in nums[1:]:
-        currsum = max(i, currsum + i)
-        maxsum = max(maxsum, currsum)
-    return maxsum
+# def maxsubarraysum(nums):
+#     maxsum = nums[0]
+#     currsum = nums[0]
+#     for i in nums[1:]:
+#         currsum = max(i, currsum + i)
+#         maxsum = max(maxsum, currsum)
+#     return maxsum
 
 # print(maxsubarraysum(nums))
 
