@@ -199,3 +199,67 @@
 # print("Sorted Array using Two-Pass Dutch National Flag Algorithm:", sorted_arr)  # Output: [0, 0, 1, 1, 2, 2]
 # Time Complexity: O(2n)
 # Space Complexity: O(1)
+
+
+# Majority Element Problem
+# brute force approach
+
+nums = [2, 2, 1, 1, 1, 2, 2]
+# def majority_element_bruteforce(nums):
+#     n = len(nums)
+#     for i in range(n):
+#         count = 0
+#         for j in range(n):
+#             if nums[j] == nums[i]:
+#                 count += 1
+#         if count > n // 2:
+#             return nums[i]
+#     return None
+
+#  As we are running two loops the time complexity will be O(n^2)
+# print("Majority Element (Brute Force):", majority_element_bruteforce(nums))
+# optimized approach using hash map
+def majority_element_optimized(nums):
+    numcount = {}
+    for num in nums:
+        if num in numcount:
+            numcount[num] += 1
+        else:
+            numcount[num] = 1
+    for value in numcount:
+        if numcount[value] > len(nums) // 2:
+            return value
+    return None
+
+
+print(majority_element_optimized(nums))
+
+# Time Complexity: O(n)
+# Space Complexity: O(n)
+
+# Moore's Voting Algorithm
+def majority_element_moore(nums):
+    count = 0
+    candidate = None
+    for num in nums:
+        if count == 0:
+            candidate = num
+            count = 1
+        elif num == candidate:
+            count += 1
+        else: 
+            count -= 1
+    # return candidate
+    # Optional: Verify that the candidate is indeed the majority element
+    count = 0
+    for num in nums:
+        if num == candidate:
+            count += 1
+    if count > len(nums) // 2:
+        return candidate
+    return -1
+
+print("Majority Element (Moore's Voting):", majority_element_moore(nums))
+# Time Complexity: O(n)
+# Space Complexity: O(1)    
+# Note: The above Moore's Voting Algorithm assumes that a majority element always exists in the array.
