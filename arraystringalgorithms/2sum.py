@@ -204,7 +204,7 @@
 # Majority Element Problem
 # brute force approach
 
-nums = [2, 2, 1, 1, 1, 2, 2]
+# nums = [2, 2, 1, 1, 1, 2, 2]
 # def majority_element_bruteforce(nums):
 #     n = len(nums)
 #     for i in range(n):
@@ -219,47 +219,142 @@ nums = [2, 2, 1, 1, 1, 2, 2]
 #  As we are running two loops the time complexity will be O(n^2)
 # print("Majority Element (Brute Force):", majority_element_bruteforce(nums))
 # optimized approach using hash map
-def majority_element_optimized(nums):
-    numcount = {}
-    for num in nums:
-        if num in numcount:
-            numcount[num] += 1
-        else:
-            numcount[num] = 1
-    for value in numcount:
-        if numcount[value] > len(nums) // 2:
-            return value
-    return None
+# def majority_element_optimized(nums):
+#     numcount = {}
+#     for num in nums:
+#         if num in numcount:
+#             numcount[num] += 1
+#         else:
+#             numcount[num] = 1
+#     for value in numcount:
+#         if numcount[value] > len(nums) // 2:
+#             return value
+#     return None
 
 
-print(majority_element_optimized(nums))
+# print(majority_element_optimized(nums))
 
 # Time Complexity: O(n)
 # Space Complexity: O(n)
 
 # Moore's Voting Algorithm
-def majority_element_moore(nums):
-    count = 0
-    candidate = None
-    for num in nums:
-        if count == 0:
-            candidate = num
-            count = 1
-        elif num == candidate:
-            count += 1
-        else: 
-            count -= 1
+# def majority_element_moore(nums):
+#     count = 0
+#     candidate = None
+#     for num in nums:
+#         if count == 0:
+#             candidate = num
+#             count = 1
+#         elif num == candidate:
+#             count += 1
+#         else: 
+#             count -= 1
     # return candidate
     # Optional: Verify that the candidate is indeed the majority element
-    count = 0
-    for num in nums:
-        if num == candidate:
-            count += 1
-    if count > len(nums) // 2:
-        return candidate
-    return -1
+#     count = 0
+#     for num in nums:
+#         if num == candidate:
+#             count += 1
+#     if count > len(nums) // 2:
+#         return candidate
+#     return -1
 
-print("Majority Element (Moore's Voting):", majority_element_moore(nums))
+# print("Majority Element (Moore's Voting):", majority_element_moore(nums))
 # Time Complexity: O(n)
 # Space Complexity: O(1)    
 # Note: The above Moore's Voting Algorithm assumes that a majority element always exists in the array.
+
+
+
+# juggling algorithm to rotate an array
+# brute force approach
+
+# rotate the array left by one place
+# nums = [1,2,3,4,5,6,7]
+# d = 3
+# def rotateleft(nums):
+#     temp = nums[0]
+#     for i in range(len(nums)):
+#         if i != (len(nums) -1):
+#             nums[i] = nums[i+d]
+#         else:
+#             nums[i] = temp
+#     return nums
+
+# print(rotateleft(nums))
+
+# def rotateleftrefined(nums):
+#     return  nums[d:] + nums[:d]
+
+# print(rotateleftrefined(nums))
+
+
+# left rotate the array by n places
+# arr = [1,2,3,4,5,6,7]
+# rotation = 9
+
+# def bruteapproach(arr,rotation):
+#     d = rotation % len(arr)
+#     temp = arr[:d]
+#     for i in range(len(arr) - d):
+#         arr[i] = arr[i+d]
+
+#     index = len(arr)-d
+#     for i in range(d):
+#         arr[index + i] = temp[i]
+
+#     return arr
+# print(bruteapproach(arr,rotation))
+
+# rotate the array by n places to the right
+
+# arr = [1,2,3,4,5,6,7]
+# n = 9
+
+# def rightrotation(arr,n):
+#     d = n%len(arr)
+#     temp = arr[(len(arr) - d):]
+#     for i in range(len(arr) - d -1, -1 , -1):
+#         arr[i+d] = arr[i]
+#     for i in range(d):
+#         arr[i] = temp[i]
+#     return arr
+# print(rightrotation(arr,n))
+    
+#  time complexity comes around O(d) + O(n -d) + O(d)
+#  space complexity comes around O(n)
+
+# reversal algorithm
+# arr = [1,2,3,4,5,6,7]
+
+# def reverse(arr,start,end):
+#     while start < end:
+#         arr[start], arr[end] = arr[end], arr[start]
+#         start = start + 1
+#         end = end - 1
+#     return arr
+
+# print(reversearray(arr,0,len(arr)-1))
+# right rotation
+# def reverselalgo(arr,d):
+#     n = len(arr)
+#     d = d % n
+#     reverse(arr, 0, n - 1)
+#     reverse(arr, 0, d - 1)
+#     reverse(arr, d, n - 1)
+#     return arr
+
+# print(reversalalgo(arr,3))
+# time complexity O(2n)
+# space complexity O(1)
+
+# left rotation
+# def leftreversealgo(arr,d):
+#     n = len(arr)
+#     d = d % n
+#     reverse(arr, 0, d - 1)
+#     reverse(arr, d, n - 1)
+#     reverse(arr, 0, n - 1)
+#     return arr
+
+# print(leftreversealgo(arr,1))
