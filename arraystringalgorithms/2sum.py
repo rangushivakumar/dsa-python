@@ -358,3 +358,24 @@
 #     return arr
 
 # print(leftreversealgo(arr,1))
+
+
+
+# KMP algorithm
+b = "cada"
+a = "abracadabra"
+# Determine whether b is a substring of a.
+# If it is, return the starting index; otherwise, return -1.
+def kmpbrute(a,b):
+    for i in range(len(b)):
+        print(b[i])
+        starindex = 0
+        for j in range(starindex,len(a)):
+            if b[i] == a[j]:
+                starindex = j + 1
+                break
+
+            
+
+        
+print(kmpbrute(a,b))
